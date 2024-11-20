@@ -1,0 +1,5 @@
+CREATE TABLE cliente(ID_Cliente varchar (15) NOT NULL unique, Nome varchar(50), Email varchar(50), PRIMARY KEY (ID_Cliente));
+CREATE TABLE produto(ID_Produto varchar (15) NOT NULL unique, Nome varchar(50), Valor varchar(50), PRIMARY KEY (ID_Produto));
+CREATE TABLE pedido(ID_Pedido varchar (15) NOT NULL unique, ID_Cliente varchar (15) NOT NULL unique, ID_Produto varchar (15) NOT NULL unique, CONSTRAINT ID_Cliente FOREIGN KEY (ID_Cliente) REFERENCES cliente(ID_Cliente), CONSTRAINT ID_Produto FOREIGN KEY (ID_Produto) REFERENCES produto(ID_Produto), PRIMARY KEY (ID_Pedido));
+
+SELECT cliente.ID_Cliente, cliente.Nome, produto.Nome FROM pedido INNER JOIN produto ON (pedido.ID_Pedido = produto.ID_Produto) INNER JOIN cliente ON (cliente.ID_Cliente = pedido.ID_Pedido)
